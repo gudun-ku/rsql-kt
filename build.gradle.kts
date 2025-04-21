@@ -1,26 +1,29 @@
+val kotlinVersion: String by project
+val antlrVersion: String by project
+
 plugins {
-    kotlin("jvm") version "2.0.21"
+    alias(libs.plugins.kotlin.jvm)
     antlr
     `java-library`
 }
 
 group = "com.beloushkin"
-version = "2.0.0-SNAPSHOT"
+version = project.property("version") as String
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib", "2.0.21"))
-    implementation(kotlin("reflect", "2.0.21"))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
     // ANTLR4
-    antlr("org.antlr:antlr4:4.13.1")
-    implementation("org.antlr:antlr4-runtime:4.13.1")
+    antlr(libs.antlr4)
+    implementation(libs.antlr4.runtime)
 
     // Add other dependencies here
     testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:${property("junitJupiterVersion")}")
 }
 
 kotlin {
