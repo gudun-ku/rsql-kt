@@ -36,6 +36,33 @@ To execute the test suite:
 
 Add this library as a dependency in your Kotlin/JVM project. Example usage and API documentation can be found in the source code under `src/main/kotlin/com/beloushkin/rsql`.
 
+## Performance Tests
+
+You can evaluate the performance of the RSQL expression parser using the included performance tests.
+
+### How to Run Performance Tests
+
+Run the following command from the project root:
+
+```bash
+./gradlew test --tests "com.beloushkin.rsql.parser.RSQLParserPerfTest"
+```
+
+### CSV Performance Report
+
+After running the performance tests, a CSV report will be generated at:
+
+```
+build/reports/rsql_perf_report.csv
+```
+
+This file contains the following columns:
+- `expr_length`: Length of the RSQL expression
+- `parse_time_ms`: Minimum parse time (ms) over 5 runs
+- `expr`: The (truncated) RSQL expression
+
+You can open this file in any spreadsheet tool to analyze parser performance.
+
 ## Project Structure
 
 - `src/main/kotlin`: Main source code
